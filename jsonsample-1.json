@@ -1,0 +1,107 @@
+{
+    "context":
+    {
+        "id": "2D42Jz5LPpw0f4vO1EzqgoCmVmd",
+        "ts": "2022-08-08T07:32:47.901Z",
+        "pipeline_id": null,
+        "workflow_id": "p_6lC69G6",
+        "deployment_id": "d_EksNpBYk",
+        "source_type": "TRACE",
+        "verified": false,
+        "hops": null,
+        "test": true,
+        "replay": false,
+        "owner_id": "u_2oh1q7d",
+        "platform_version": "3.32.0",
+        "workflow_name": "Tally to PostgreSQL",
+        "resume": null,
+        "trace_id": "2D42Jz5LPpw0f4vO1EzqgoCmVmd"
+    },
+    "event":
+    {
+        "responseId": "kdWdOM",
+        "submissionId": "kdWdOM",
+        "respondentId": "n0RW7A",
+        "formId": "n0Q1eA",
+        "formName": "Daily RFC Demo",
+        "createdAt": "2022-07-29T08:15:39.000Z",
+        "fields":
+        [
+            {
+                "key": "question_w2LoPb_413b3350-710c-40a5-b1f5-a85b431519a9",
+                "label": "score",
+                "type": "CALCULATED_FIELDS",
+                "value": 1
+            },
+            {
+                "key": "question_wzZdDE_fe19f493-bc64-4cc2-9c8d-b4b2fd7e3e78",
+                "label": "var1SiteId",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_wzZdDE_393422a2-82c0-4c67-98dd-8ac76f7782da",
+                "label": "var2ResourceType",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_wzZdDE_ca25abc8-c91b-45e0-a7e3-fad1ef4b4a4f",
+                "label": "var3EmailId",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_wzZdDE_7f093d69-ac2f-4be7-a166-a0dabb58b03a",
+                "label": "var4Country",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_wzZdDE_14c5d9cf-0e58-43e2-a9c3-7808516aa819",
+                "label": "retailerEmail",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_wzZdDE_18db82d1-5ed9-4ecb-b8af-20217e3a0484",
+                "label": "siteDesc",
+                "type": "HIDDEN_FIELDS",
+                "value": null
+            },
+            {
+                "key": "question_3x2zYJ",
+                "label": "Is the site ready for customers?",
+                "type": "MULTIPLE_CHOICE",
+                "value": "3d2748e7-7056-4977-a250-9546c972aab6",
+                "options":
+                [
+                    {
+                        "id": "3d2748e7-7056-4977-a250-9546c972aab6",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "1d973f9d-efb7-43f0-b47d-192515266a72",
+                        "text": "No"
+                    },
+                    {
+                        "id": "e8635b6c-32c8-486e-b3cd-56523bf174d7",
+                        "text": "N/A"
+                    }
+                ]
+            },
+            {
+                "key": "question_mOLEGA",
+                "label": "If no, please attach a photo",
+                "type": "FILE_UPLOAD",
+                "value": null
+            },
+            {
+                "key": "question_nPlrO0",
+                "label": "Comment",
+                "type": "TEXTAREA",
+                "value": null
+            }
+        ]
+    }
+}

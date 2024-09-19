@@ -1,0 +1,13 @@
+{
+    "Certificate":[
+        {
+            "name": "omotoso abiodun",
+            "matricNo":"CSC/2018/192",
+            "grade": "first class",
+            "department":"computer engineering",
+            "completion": "2/12/2018",
+            "issuer": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+            "exists":"true"
+        }   
+    ]
+}

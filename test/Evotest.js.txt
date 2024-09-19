@@ -1,0 +1,126 @@
+const {expect} = require("chai");
+
+describe("Evote", ()=>{
+    let Contract, contract, director, voter, result
+    const id=0
+    const title="Nigeria Election 2024"
+    const newTitle="Nigeria Election 2024"
+    const image = "https://images.urls/me.jpg"
+    const newimage= "https://images.urls/you.png"
+    const decription= " Presedential election"
+    const startAt= Date.now() + 3600 * 1000 *24
+    const endsAt= Date.now() + 3600 *1000 * 72  
+
+    // checking the param for register a user
+
+    const image1= "https//website.com/image.jpg"
+    const fullname= "olayinka yusuff"
+
+    const image2= "https//website.com/image2.jpg"
+    const fullname2= "tola adeola"
+     
+    beforeEach(async ()=> {
+        Contract = await ethers.getContractFactory("Evote")
+        ;[director, voter] = await ethers.getSigners()
+
+        contract = await Contract.deploy()         
+
+    })
+
+    describe('Poll', ()=>{
+        
+        beforeEach(async ()=>{
+
+            // you had to reguiter the person  first
+
+            await contract.register(image1, fullname, {
+                from : director.address.addres,})
+
+            // registering of the poll
+            await contract.createPoll(image, title,decription, startAt, endsAt, {
+                from:director.address 
+            })
+        })
+
+        it("should confirm poll creation" , async ()=>{
+          result= await contract.getPolls()
+          expect(result).to.have.length(1)
+        })
+
+        it("should confrirm the update poll", async ()=>{
+            result = await contract.getPoll(id)
+
+            await contract.UpdatePoll(
+                result.id,
+                newimage,
+                newTitle,
+                decription,
+                startAt,
+                endsAt,
+                {
+                    from : director.address,
+                },
+                )
+         result = await contract.getPoll(id)
+        expect(result.title).to.equal(title)
+        expect(result.image).to.equal(newimage)
+        })
+
+        it("should confrim poll delete", async ()=>{
+            result = await contract.getPoll(id)
+            await contract.deletedPoll(id, {
+                from : director.address,
+            })
+
+            result = await contract.getPoll(id)
+            expect(result.deleted).to.equal(true)
+        })
+    })
+
+    describe("candidate", async ()=>{
+        beforeEach(async ()=>{
+            await contract.register(image2, fullname2, {
+                from: director.address,
+            })
+            await contract.connect(voter).register(image2, fullname2)
+
+            await contract.createPoll(image, title, decription, startAt , endsAt , {
+                from : director.address,
+            })
+        })
+        it("should confrim the ability to contest" , async ()=>{
+            await contract.contest(id,{
+                from : director.addres,
+            } )
+
+            await  contract.connect(voter).contest(id)
+
+            result = await contract.listConstants(id)
+            expect(result).to.have.lengthOf(2)
+
+            result= await contract.getPoll(id)
+            expect(result.constantants).to.equal(2)
+
+        })
+
+        it("should confirm ability to vote", async ()=>{
+            await contract.contest(id , {
+                from : director.addres,
+            })
+            result = await contract.listConstants(id)
+            result= result[0]
+            expect(result.voters).to.not.include(voter.address)
+            expect(result.votes).to.equal(0)
+
+            setTimeout( async ()=>{
+                await contract.connect(voter).vote(id, result.id)
+                result = await contract.listConstants(id)
+                result= result[0]
+                expect(result.voters).to.not.include(voter.address)
+                expect(result.votes).to.equal(0)
+            }, 1000)
+
+        })
+    })
+
+})
